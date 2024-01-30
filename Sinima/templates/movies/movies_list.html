@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load movies_tags %}
+
+{% block extrastyles %}
+<link rel="stylesheet" href="{% static 'css/movie_list.css' %}">
+{% endblock %}
+
+
+{% block main %}
+
+{% get_movis_list_html %}
+
+{% endblock %}
+
+{% block extrascripts %}
+
+{% endblock %}
