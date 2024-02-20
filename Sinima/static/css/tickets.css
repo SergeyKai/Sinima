@@ -1,0 +1,77 @@
+.u_ticket_wrapper {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    flex-wrap: wrap;
+}
+
+.ticket_instance {
+    position: relative;
+
+    padding: 15px;
+    margin: 15px 0;
+
+    width: 280px;
+    height: 290px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.158);
+
+    background-color: #212529;
+
+    color: #ffc107;
+
+    border-radius: 10px;
+
+
+}
+
+.ticket_move_title {
+    text-align: center;
+}
+
+.ticket_cinema_info {
+    font-size: 13px;
+    color: #5e6063;
+}
+
+.container_centred_items_column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.ticket_session_time {
+    font-size: 18px;
+}
+
+.qr_code_container {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 1000px;
+    height: 1000px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #212529;
+
+    /* border: 5px solid #ffc107; */
+    border-radius: 20px;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.158);
+}

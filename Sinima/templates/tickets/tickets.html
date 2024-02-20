@@ -1,0 +1,62 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load movies_tags %}
+
+{% block extrastyles %}
+<link rel="stylesheet" href="{% static 'css/tickets.css' %}">
+{% endblock %}
+
+
+{% block main %}
+
+<div class="container">
+    <div class="u_ticket_wrapper">
+
+        {% for ticket in tickets %}
+        <div class="ticket_instance" data-qr="{{ ticket.svg_qr_code }}">
+            <p class="ticket_cinema_info">
+                {{ ticket.session.room.cinema.address }}
+                <span>/{{ ticket.session.start_time }}</span>
+            </p>
+            <h2 class="ticket_move_title">{{ ticket.session.movie.title }}</h2>
+            <div class="container_centred_items_column">
+                <p class="ticket_session_time"><span>{{ ticket.session.start_time|time:"H:i" }}</span></p>
+                <p>Ряд: <span>{{ ticket.seat.row }}</span> Место №: <span>{{ ticket.seat.number }}</span></p>
+            </div>
+
+            <div class="qr">
+
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block extrascripts %}
+<script>
+    var ticketInstances = document.querySelectorAll('.ticket_instance');
+    
+    ticketInstances.forEach(function(ticket) {
+        ticket.addEventListener('click', function() {
+            var qrCode = ticket.dataset.qr;
+            if (qrCode) {
+                var qrElement = document.createElement('div');
+                qrElement.classList.add('qr_code_container')
+                qrElement.innerHTML = qrCode;
+
+                document.body.appendChild(qrElement);
+
+                qrElement.addEventListener('click', function() {
+                    qrElement.remove();
+                });
+            }
+        });
+    });
+
+</script>
+{% endblock %}

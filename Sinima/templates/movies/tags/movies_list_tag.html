@@ -1,14 +1,14 @@
 <div class="d-flex justify-content-center align-items-center flex-wrap">
     {% for m in movies %}
-    <div class="m-auto">
+    <div class="m-auto position-relative">
         <div class="img_wrapper">
             <img class="img-responsive" width="300px" src="{{ m.poster.url }}" alt="{{ m.slug }}">
         </div>
 
+        <!--        <a class="d-block w-100 h-100" href=""></a>-->
         <a class="" href="{{ m.get_absolute_url }}">
             <h3>{{ m.title }}</h3>
         </a>
-        <!--        <a class="stretched-link d-block" href=""></a>-->
     </div>
     {% endfor %}
 </div>

@@ -1,0 +1,17 @@
+<form class="d-flex align-items-center" method="get">
+
+    <select class="" name="cinema" id="cinema">
+
+        {% for cinema in cinemas %}
+        <option value="{{ cinema.pk }}">
+            {{ cinema.name }}
+        </option>
+        {% endfor %}
+
+    </select>
+
+    <input class="session_filter_date_field" type="date" name="date">
+
+    <button class="btn btn-warning" type="submit">Ок</button>
+
+</form>

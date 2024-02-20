@@ -3,8 +3,8 @@ from django.utils.safestring import mark_safe
 
 from . import models
 
+admin.site.register(models.Genre)
 
-# admin.site.register(models.Actor)
 
 @admin.register(models.Actor)
 class ActorAdmin(admin.ModelAdmin):
@@ -28,8 +28,19 @@ class MovieAdmin(admin.ModelAdmin):
     list_filter = ('release_date', 'title')
     prepopulated_fields = {'slug': ('title',)}
 
-    fields = ('title', 'release_date', 'poster', 'get_poster', 'description', 'actors', 'slug')
     readonly_fields = ('get_poster',)
+    fields = (
+        'title',
+        'release_date',
+        'poster',
+        'get_poster',
+        'description',
+        'actors',
+        'slug',
+        'age_requirement',
+        'genre',
+        'country',
+    )
 
     def get_actors(self, obj):
         ac_names = [a.name for a in obj.actors.all()]

@@ -1,0 +1,90 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load movies_tags %}
+
+{% block extrastyles %}
+<!--<link rel="stylesheet" href="{% static 'css/movie_list.css' %}">-->
+{% endblock %}
+
+
+{% block main %}
+
+<form class="ticket_form" action="" method="post">
+    <div class="form_errors">
+        {% if form.errors %}
+        <ul>
+            {% for field in form %}
+            {% for error in field.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    {% csrf_token %}
+    {{ form.user }}
+    <div class="session_info_wrapper">
+        <h2 class="movi_title">{{ session.movie.title }}</h2>
+        <!--        <h2 class="room_name">Зал: {{ session.room.name }}</h2>-->
+        <div class="session_info">
+            <p>
+                {% if session.start_time|date:"Y-m-d" == timezone.now|date:"Y-m-d" %}
+                Сегодня {{ session.start_time|time:"H:i" }}
+                {% else %}
+                {{ session.start_time }}
+                {% endif %}
+                <span title="{{ session.room.cinema.address }}">{{ session.room.cinema.name }}</span>
+                <span>{{ session.room.name }}</span>
+            </p>
+        </div>
+        <p>{{ form.session }}</p>
+    </div>
+
+    <div class="container seats_container">
+        {% for seat in form.seat %}
+        {% if forloop.counter0|divisibleby:"15" %}
+        <div class="seat_row">
+            {% endif %}
+            {{ seat }}
+            {% if forloop.counter0|add:"1"|divisibleby:"15" or forloop.last %}
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="paying_info">
+        <p id="result_price">0 <span>₽</span></p>
+        <button class="btn btn-warning pay_btn" type="submit">Оплатить</button>
+    </div>
+
+</form>
+
+{% endblock %}
+
+{% block extrascripts %}
+
+<script>
+    const checkboxes = document.querySelectorAll('.seat');
+    const resultElement = document.getElementById('result_price');
+    let total = 0;
+
+    function updateTotal() {
+        resultElement.textContent = total + ' ₽';
+    }
+
+    function handleChange(event) {
+        const price = parseFloat(event.target.dataset.price);
+
+        if (event.target.checked) {
+            total += price;
+        } else {
+            total -= price;
+        }
+        updateTotal();
+    }
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', handleChange);
+    });
+</script>
+
+{% endblock %}

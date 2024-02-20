@@ -1,5 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% load filters %}
 
 {% block extrastyles %}
 <link rel="stylesheet" href="{% static 'css/movie_detail.css' %}">
@@ -8,27 +9,112 @@
 
 {% block main %}
 
-<h1>{{ title }}</h1>
-<p>{{ description }}</p>
-<img src="{{ poster.url }}" alt="{{ slug }}">
+<div class="container mt-5 d-flex justify-content-around">
+
+    <div class="col-4">
+
+        <img width="100%" class="" src="{{ poster.url }}" alt="{{ slug }}">
+
+    </div>
+
+    <div class=" сol-6">
+
+        <h1 class="mb-5">{{ title }}</h1>
+        <h3>О фильме: </h3>
+        <p class="text-justify">{{ description }}</p>
+        <p>Дата релиза: <span>{{ release_date }}</span></p>
+        <p>Страна: <span>{{ movie.country }}</span></p>
+        <p>Возрастной рейтинг: <span>{{ movie.age_requirement }}</span></p>
+
+    </div>
 
 
-<ul>
-    {% for actor in actors %}
-    <li>
-        <div class="img_wrapper">
-            <img src="{{ actor.photo.url }}" alt="">
-        </div>
-        <a href="{{ actor.get_absolute_url }}">
-            <h3>{{ actor.name }}</h3>
-        </a>
-    </li>
-    {% endfor %}
-</ul>
+</div>
 
+
+<div class="container mt-5">
+
+    <h3>В главных ролях: </h3>
+    <ul class="d-flex align-items-center flex-wrap list-unstyled">
+        {% for actor in actors %}
+        <li class="mr-3">
+            <div class="img_wrapper h-4">
+                <img height="100%" src="{{ actor.photo.url }}" alt="">
+            </div>
+            <a href="{{ actor.get_absolute_url }}">
+                <h3 class="fs-22 text-center">{{ actor.name }}</h3>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+
+</div>
+
+<div class="container">
+
+    <h2>Расписание: </h2>
+
+    {% get_sessions_filter %}
+
+    <ul class="list-unstyled d-flex flex-column">
+        {% for session in sessions %}
+
+        <li class="session d-flex">
+
+
+            <div class="cinema_info">
+
+                <div class="cinema">
+                    <div class="cinema_img_wrapper">
+                        <img class="cinema_logo" src="{{ session.room.cinema.logo.url }}" alt="fff">
+                    </div>
+                    <div class="cinema_info">
+                        <a title="На карте" class="cinema_link" href="{{ session.room.cinema.map_link }}">
+                            {{ session.room.cinema.name }}</a>
+                        <span>{{ session.room.cinema.address }} </span>
+                    </div>
+                </div>
+
+                <!--                <div class="room">-->
+                <!--                    Зал: <span>session.room.name </span>-->
+                <!--                </div>-->
+
+            </div>
+
+            <a href="{% url 'pay_tickets' session.pk %}" class="session_btn">
+                <span class="ticket_price">{{ session.ticket_price }}</span>
+                <span class="session_time">
+                    {{ session.start_time | date:"H:i" }}
+                </span>
+            </a>
+
+
+        </li>
+
+        {% endfor %}
+    </ul>
+
+
+</div>
 
 {% endblock %}
 
 {% block extrascripts %}
+
+<!-- <script>
+    let session_btn_list = document.querySelectorAll('.session_btn');
+
+    session_btn_list.forEach(function (btn, key, btns){
+        console.log(btn)
+        console.log(key)
+        console.log(btns)
+
+        btn.onclick = function() {
+
+        }
+
+    })
+
+</script> -->
 
 {% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block extrastyles %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+
+    <div class="tile_wrapper">
+
+        <div class="tile user_data">
+            <p>Мои данные</p>
+            <a class=" position-absolute d-block w-100 h-100" href="#"></a>
+        </div>
+        <div class="tile tickets">
+            <p>Билеты</p>
+            <a class=" position-absolute d-block w-100 h-100" href="{% url 'tickets' %}"></a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
