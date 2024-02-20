@@ -1,15 +1,17 @@
 {% extends 'core/base.html' %}
+{% load static %}
+
 
 {% block extrastyles %}
-
+<link rel="stylesheet" href="{% static 'css/user_forms.css' %}">
 {% endblock %}
 
 {% block main %}
 
-<form method="post" action="">
+<form method="post" action=""  class="sign_in_form">
 
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form }}
 
     <button type="submit">Зарегистрироваться</button>
 
