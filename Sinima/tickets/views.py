@@ -1,7 +1,9 @@
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
+from core.permishions import admin_required
 from .forms import PurchaseTicketForm
 
 from cinemas.models import Session
@@ -29,6 +31,10 @@ def tickets(request):
     return render(request, 'tickets/tickets.html', {'tickets': u_tickets})
 
 
-@login_required
+@admin_required
 def check_ticket(request, ticket_id):
-    return render(request, 'tickets/check_success.html')
+    try:
+        ticket = Ticket.objects.get(pk=ticket_id)
+        return render(request, 'tickets/check_success.html', {'ticket': ticket})
+    except Ticket.DoesNotExist:
+        return render(request, 'tickets/check_forbidden.html', )

@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load movies_tags %}
+
+{% block extrastyles %}
+<link rel="stylesheet" href="{% static 'css/ticket_check.css' %}">
+{% endblock %}
+
+
+{% block main %}
+<div class="success_container">
+
+
+    <div class="success_msg">
+
+        <span>Success</span>
+
+    </div>
+
+    <div class="ticket_block">
+
+
+        <p>{{ ticket.session.movie.title }}</p>
+
+
+        <p>Зал: <span>{{ ticket.seat.room.name }}</span></p>
+
+        <div class="">
+
+            <p>Ряд: <span>{{ ticket.seat.row }}</span></p>
+            <p>Место: <span>{{ ticket.seat.number }}</span></p>
+
+        </div>
+
+        <p>{{ ticket.user }}</p>
+
+
+    </div>
+
+
+</div>
+
+{% endblock %}

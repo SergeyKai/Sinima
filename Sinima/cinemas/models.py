@@ -59,3 +59,4 @@ class Session(models.Model):
     class Meta:
         verbose_name = 'Показ'
         verbose_name_plural = 'Показы'
+        ordering = ['start_time', 'movie__title']

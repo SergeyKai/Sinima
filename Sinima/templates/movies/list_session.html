@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load movies_tags %}
+
+{% block extrastyles %}
+<link rel="stylesheet" href="{% static 'css/list_session.css' %}">
+{% endblock %}
+
+
+{% block main %}
+
+<div class="container session_container">
+
+    {% for session in sessions %}
+
+    <div class="session_instance">
+
+
+
+        <div class="session_movie_info">
+
+            <div class="img_wrapper">
+
+                <img src="{{ session.movie.poster.url }}" alt="">
+                
+            </div>
+
+            <h2 class="movie_title">{{ session.movie.title }}</h2>
+
+        </div>
+
+        <div class="session_info">
+
+            <p>{{ session.start_time }}</p>
+
+            <a class="btn btn-warning cinema_address_link" href="{{ session.room.cinema.map_link }}">Кинотеатр: <span>{{ session.room.cinema.name }}</span></a>
+
+        </div>
+
+        <a class="session_link" href="{% url 'pay_tickets' session.pk %}"></a>
+
+    </div>
+
+    {% endfor %}
+</div>
+
+
+{% endblock %}
+
+{% block extrascripts %}
+
+{% endblock %}

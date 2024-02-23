@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load movies_tags %}
+
+{% block extrastyles %}
+<link rel="stylesheet" href="{% static 'css/forbidden.css' %}">
+{% endblock %}
+
+
+{% block main %}
+
+<h1 class="forbidden_title">Доступ запрещен! Вы не обладаете правами администратора!</h1>
+
+{% endblock %}

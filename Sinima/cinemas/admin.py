@@ -8,6 +8,9 @@ admin.site.register(models.Seat)
 
 @admin.register(models.Session)
 class SessionAdmin(admin.ModelAdmin):
+    """
+    Регистрация модели Session в панели администратора
+    """
     list_display = ('id', 'movie', 'get_movie_poster', 'room', 'start_time', 'ticket_price')
     list_display_links = ('id', 'movie')
     list_filter = ('movie', 'room', 'start_time', 'ticket_price')

@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load movies_tags %}
+
+{% block extrastyles %}
+<link rel="stylesheet" href="{% static 'css/ticket_check.css' %}">
+{% endblock %}
+
+
+{% block main %}
+<div class="forbidden_container">
+
+    <div class="forbidden_msg">
+
+        <span>Forbidden</span>
+
+    </div>
+
+</div>
+
+{% endblock %}

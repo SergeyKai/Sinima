@@ -31,7 +31,7 @@ class Ticket(models.Model):
         self.save()
 
     def __str__(self):
-        return f'Билет: Пользователь: {self.user} Сеанс: {self.session} Место: {self.seat} Время покупки: {self.purchase_time}'
+        return f'Билет: Пользователь: {self.user} Место: {self.seat} Время покупки: {self.purchase_time} <id: {self.pk}>'
 
     class Meta:
         verbose_name = 'Билет'
