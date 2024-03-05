@@ -50,6 +50,20 @@
 
 </section>
 
+<section>
+
+    <form action="" method="post">
+
+        {% csrf_token %}
+
+        {{ form }}
+
+        <button type="submit">send</button>
+
+    </form>
+
+</section>
+
 {% endblock %}
 
 {% block extrascripts %}

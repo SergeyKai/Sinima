@@ -23,6 +23,7 @@ class Room(models.Model):
     cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE, verbose_name='Кинотеатр')
     name = models.CharField(max_length=50, verbose_name='Наименование зала')
     capacity = models.PositiveIntegerField(verbose_name='Вместимость')
+    rows_quantity = models.PositiveIntegerField(verbose_name='Количество рядов')
 
     def __str__(self):
         return f'Зал: {self.name} кинотеатр: {self.cinema} вместимость: {self.capacity} id: {self.pk}'
