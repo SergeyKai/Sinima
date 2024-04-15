@@ -1,7 +1,10 @@
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
+from django.urls import reverse
+
+from users.forms import CustomUserChangeForm
 
 
 def sign_up(request):
@@ -39,3 +42,10 @@ def user_logout(request):
 @login_required
 def profile(request):
     return render(request, 'users/profile.html')
+
+
+def user_change_data(request):
+    ctx = {
+        'form': CustomUserChangeForm(),
+    }
+    return render(request, 'users/user_change_data.html', context=ctx)

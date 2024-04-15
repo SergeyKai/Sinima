@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block extrastyles %}
+<link rel="stylesheet" href="{% static 'css/user_change_data_form.css' %}">
+{% endblock %}
+
+{% block main %}
+
+<form method="post" action="" class="user_change_data_form">
+
+    {{ ur }}
+
+    {% csrf_token %}
+    {{ form }}
+
+    <button class="btn btn-warning" type="submit">Сохранить</button>
+
+</form>
+
+{% endblock %}

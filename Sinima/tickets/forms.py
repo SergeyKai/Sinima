@@ -71,6 +71,12 @@ class PurchaseTicketForm(forms.Form):
         seats = Seat.objects.filter(room=session.room)
         self.fields['seat'].queryset = seats
 
+        if 'seat' in self.fields:
+            self.fields['seat'].widget.attrs.update({
+                'data-price': self.session.ticket_price,
+                'class': 'seat'
+            })
+
     def clean_seat(self):
         seats = self.cleaned_data.get('seat')
         for seat in seats:

@@ -20,6 +20,9 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+# http://127.0.0.1:8000/
+# http://127.0.0.1:8000/users/sign_in/
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),

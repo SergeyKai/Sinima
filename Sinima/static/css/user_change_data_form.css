@@ -1,0 +1,27 @@
+.user_change_data_form {
+    margin: 20px auto;
+
+    max-width: 80%;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+}
+
+.user_change_data_form div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.user_change_data_form input {
+    margin: 10px 0;
+}
+
+button {
+    margin: 20px 0;
+}

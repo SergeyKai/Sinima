@@ -57,8 +57,34 @@ main {
 }
 
 .main_footer {
-    /* position: fixed;
-    bottom: 0;
-    left: 0; */
     width: 100%;
 }
+
+@media(max-width:1200px) {
+    .main-header {
+        position: fixed;
+        z-index: 100;
+        width: 100%;
+    }
+
+
+    #main-menu {
+        justify-content: space-between;
+        align-items: start;
+    }
+
+    #nav-main-menu {
+        display: flex;
+        flex-direction: column;
+
+        display: none;
+    }
+
+    #nav-main-menu li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
